@@ -12,8 +12,12 @@ function App() {
     <>
       <h1>APP de peliculas</h1>
       <div className="search-container">
-        <input type="text" value={searchTerm} onChange={handleSearchMovie} />
-        <button>search</button>
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={handleSearchMovie}
+          placeholder="nombre de pelicula"
+        />
       </div>
       <CardMovies searchTerm={searchTerm} />
     </>
