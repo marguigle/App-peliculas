@@ -6,6 +6,7 @@ import { apiKey, endpoint } from "../config.js";
 const CardMovies = ({ searchTerm }) => {
   const [peliculas, setPeliculas] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
+  const [resumen, setResumen] = useState(" ");
 
   useEffect(() => {
     const url = new URL(endpoint);
@@ -40,7 +41,10 @@ const CardMovies = ({ searchTerm }) => {
       setPageNumber(pageNumber - 1);
     }
   };
-
+  const handleResumen = (pelicula) => {
+    setResumen(pelicula.overview);
+    console.log(pelicula.overview);
+  };
   return (
     <div className="conteiner-cards">
       <div className="page-buttons">
@@ -54,8 +58,9 @@ const CardMovies = ({ searchTerm }) => {
           <img
             src={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`}
             alt="Poster"
+            onClick={() => handleResumen(pelicula)}
           />
-          <p>Resumen: {pelicula.overview}</p>
+          <p>Resumen: {resumen}</p>
           <p>Popularidad: {pelicula.popularity}</p>
           <p>Lenguaje original: {pelicula.original_language}</p>
           <p>Fecha de lanzamiento: {pelicula.release_date}</p>
