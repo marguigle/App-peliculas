@@ -10,15 +10,18 @@ function App() {
   }
   return (
     <>
-      <h1>APP de peliculas</h1>
-      <div className="search-container">
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={handleSearchMovie}
-          placeholder="nombre de pelicula"
-        />
+      <div className="banner">
+        <h1>MARCEFLIX</h1>
+        <div className="search-container">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={handleSearchMovie}
+            placeholder="nombre de pelicula"
+          />
+        </div>
       </div>
+
       <CardMovies searchTerm={searchTerm} />
     </>
   );
