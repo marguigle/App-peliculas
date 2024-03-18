@@ -47,10 +47,14 @@ const CardMovies = ({ searchTerm }) => {
   };
   return (
     <div className="conteiner-cards">
-      <div className="page-buttons">
-        <button onClick={handlePrevPage}>Anterior</button>
-        <button onClick={handleNextPage}>Siguiente</button>
-      </div>
+      {/* <div className="page-buttons">
+        <button onClick={handlePrevPage}>
+          <span className="material-symbols-outlined">navigate_before</span>
+        </button>
+        <button onClick={handleNextPage}>
+          <span className="material-symbols-outlined">navigate_next</span>
+        </button>
+      </div> */}
 
       {peliculasFiltradas.map((pelicula) => (
         <div key={pelicula.id} className="card-movies ">
@@ -68,8 +72,12 @@ const CardMovies = ({ searchTerm }) => {
       ))}
 
       <div className="page-buttons">
-        <button onClick={handlePrevPage}>Anterior</button>
-        <button onClick={handleNextPage}>Siguiente</button>
+        <button onClick={handlePrevPage}>
+          <span className="material-symbols-outlined">navigate_before</span>
+        </button>
+        <button onClick={handleNextPage}>
+          <span className="material-symbols-outlined">navigate_next</span>
+        </button>
       </div>
     </div>
   );
