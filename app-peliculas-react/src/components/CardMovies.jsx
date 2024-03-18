@@ -3,9 +3,8 @@ import "./CardMovies.css";
 import PropTypes from "prop-types";
 import { apiKey, endpoint } from "../config.js";
 
-const CardMovies = ({ searchTerm }) => {
+const CardMovies = ({ searchTerm, pageNumber }) => {
   const [peliculas, setPeliculas] = useState([]);
-  const [pageNumber, setPageNumber] = useState(1);
   const [resumen, setResumen] = useState(" ");
 
   useEffect(() => {
@@ -25,37 +24,19 @@ const CardMovies = ({ searchTerm }) => {
       .catch((error) => console.error("Error:", error));
   }, [searchTerm, pageNumber]);
   // console.log(peliculas);
+
   const peliculasFiltradas = peliculas.filter(
     (pelicula) =>
       pelicula.original_title &&
       pelicula.original_title.toLowerCase().startsWith(searchTerm.toLowerCase())
   );
-  const handleNextPage = () => {
-    pageNumber == peliculas.length
-      ? setPageNumber(1)
-      : setPageNumber(pageNumber + 1); // Incrementa el número de página
-  };
 
-  const handlePrevPage = () => {
-    if (pageNumber > 1) {
-      setPageNumber(pageNumber - 1);
-    }
-  };
   const handleResumen = (pelicula) => {
     setResumen(pelicula.overview);
     console.log(pelicula.overview);
   };
   return (
     <div className="conteiner-cards">
-      {/* <div className="page-buttons">
-        <button onClick={handlePrevPage}>
-          <span className="material-symbols-outlined">navigate_before</span>
-        </button>
-        <button onClick={handleNextPage}>
-          <span className="material-symbols-outlined">navigate_next</span>
-        </button>
-      </div> */}
-
       {peliculasFiltradas.map((pelicula) => (
         <div key={pelicula.id} className="card-movies ">
           <h3>{pelicula.original_title}</h3>
@@ -70,20 +51,12 @@ const CardMovies = ({ searchTerm }) => {
           <p>Fecha de lanzamiento: {pelicula.release_date}</p>
         </div>
       ))}
-
-      <div className="page-buttons">
-        <button onClick={handlePrevPage}>
-          <span className="material-symbols-outlined">navigate_before</span>
-        </button>
-        <button onClick={handleNextPage}>
-          <span className="material-symbols-outlined">navigate_next</span>
-        </button>
-      </div>
     </div>
   );
 };
 CardMovies.propTypes = {
-  searchTerm: PropTypes.string.isRequired, // Valida el tipo de la prop searchTerm
+  searchTerm: PropTypes.string.isRequired,
+  pageNumber: PropTypes.number.isRequired, // Valida el tipo de la prop searchTerm
 };
 
 export default CardMovies;
