@@ -5,7 +5,6 @@ import { apiKey, endpoint } from "../config.js";
 
 const CardMovies = ({ searchTerm, pageNumber }) => {
   const [peliculas, setPeliculas] = useState([]);
-  const [resumen, setResumen] = useState(" ");
 
   useEffect(() => {
     const url = new URL(endpoint);
@@ -18,12 +17,16 @@ const CardMovies = ({ searchTerm, pageNumber }) => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        setPeliculas(data.results);
+        setPeliculas(
+          data.results.map((pelicula) => ({
+            ...pelicula,
+            resumen: "",
+          }))
+        );
         console.log(data.results);
       })
       .catch((error) => console.error("Error:", error));
   }, [searchTerm, pageNumber]);
-  // console.log(peliculas);
 
   const peliculasFiltradas = peliculas.filter(
     (pelicula) =>
@@ -32,9 +35,20 @@ const CardMovies = ({ searchTerm, pageNumber }) => {
   );
 
   const handleResumen = (pelicula) => {
-    setResumen(pelicula.overview);
-    console.log(pelicula.overview);
+    setPeliculas((prevPeliculas) =>
+      prevPeliculas.map((p) => ({
+        ...p,
+
+        resumen:
+          p.id === pelicula.id
+            ? p.resumen
+              ? ""
+              : pelicula.overview
+            : p.resumen,
+      }))
+    );
   };
+
   return (
     <div className="conteiner-cards">
       {peliculasFiltradas.map((pelicula) => (
@@ -45,7 +59,7 @@ const CardMovies = ({ searchTerm, pageNumber }) => {
             alt="Poster"
             onClick={() => handleResumen(pelicula)}
           />
-          <p>Resumen: {resumen}</p>
+          <p> {pelicula.resumen}</p>
           <p>Popularidad: {pelicula.popularity}</p>
           <p>Lenguaje original: {pelicula.original_language}</p>
           <p>Fecha de lanzamiento: {pelicula.release_date}</p>

@@ -1,13 +1,14 @@
 import PropTypes from "prop-types";
+import "./paginationButtons.css";
 
 const PaginationButtons = ({ onNextPage, onPrevPage }) => {
   return (
     <div className="page-buttons">
-      <button onClick={onPrevPage}>
-        <span className="material-symbols-outlined">navigate_before</span>
+      <button onClick={onPrevPage} className="page-btn">
+        <span className="material-symbols-outlined">navigate_before PREV</span>
       </button>
-      <button onClick={onNextPage}>
-        <span className="material-symbols-outlined">navigate_next</span>
+      <button onClick={onNextPage} className="page-btn">
+        <span className="material-symbols-outlined">NEXT navigate_next </span>
       </button>
     </div>
   );
