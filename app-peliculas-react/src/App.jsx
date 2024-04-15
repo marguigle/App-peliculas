@@ -24,13 +24,14 @@ function App() {
   return (
     <>
       <div className="banner">
+        <img src="favicon_io/apple-touch-icon.png" alt="logo" />
         <h1>MARCEFLIX</h1>
         <div className="search-container">
           <input
             type="text"
             value={searchTerm}
             onChange={handleSearchMovie}
-            placeholder="nombre de pelicula"
+            placeholder="  nombre de pelicula"
           />
         </div>
       </div>

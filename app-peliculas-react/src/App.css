@@ -34,3 +34,8 @@ body {
 .search-container {
   background-color: black;
 }
+.banner img {
+  border: 2px solid white;
+  border-radius: 8px;
+  margin-top: 20px;
+}
