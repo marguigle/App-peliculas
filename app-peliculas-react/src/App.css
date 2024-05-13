@@ -3,7 +3,7 @@ body {
   margin: 0 auto;
   padding: 0 auto;
   text-align: center;
-  background-color: black;
+  background-color: Black;
   /* box-sizing: border-box; */
 }
 
@@ -32,7 +32,7 @@ body {
   border: none;
 }
 .search-container {
-  background-color: black;
+  background-color: rgb(53, 53, 53);
 }
 .banner img {
   border: 2px solid white;

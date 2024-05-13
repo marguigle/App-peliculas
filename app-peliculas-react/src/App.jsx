@@ -31,7 +31,7 @@ function App() {
             type="text"
             value={searchTerm}
             onChange={handleSearchMovie}
-            placeholder="  nombre de pelicula"
+            placeholder="                           MOVIE NAME"
           />
         </div>
       </div>
