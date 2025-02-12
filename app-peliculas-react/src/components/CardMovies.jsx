@@ -71,7 +71,7 @@ const CardMovies = ({ searchTerm, pageNumber }) => {
 
             {/* Botón para alternar entre resumen y detalles */}
             <button onClick={() => handleResumen(pelicula)}>
-              {pelicula.showResumen ? "Ver detalles" : "Ver resumen"}
+              {pelicula.showResumen ? "Ver resumen" : "Ver resumen"}
             </button>
           </div>
         ))}
