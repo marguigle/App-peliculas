@@ -1,4 +1,5 @@
 import CardMovies from "../components/CardMovies.jsx";
+import Header from "../components/Header.jsx";
 import PaginationButtons from "../components/PaginationButtons.jsx";
 import { useState } from "react";
 
@@ -22,18 +23,7 @@ function HomePage() {
   }
   return (
     <>
-      <div className="banner">
-        <img src="favicon_io/apple-touch-icon.png" alt="logo" />
-        <h1>MARCEFLIX</h1>
-        <div className="search-container">
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={handleSearchMovie}
-            placeholder="                           MOVIE NAME"
-          />
-        </div>
-      </div>
+      <Header handleSearchMovie={handleSearchMovie} searchTerm={searchTerm} />
       <PaginationButtons
         onNextPage={handleNextPage}
         onPrevPage={handlePrevPage}

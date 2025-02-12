@@ -49,7 +49,7 @@ const CardMovies = ({ searchTerm, pageNumber }) => {
       <div className="conteiner-cards">
         {peliculasFiltradas.map((pelicula) => (
           <div key={pelicula.id} className="card-movies">
-            <h3>{pelicula.original_title}</h3>
+            <h2>{pelicula.original_title}</h2>
 
             {/* Mostramos la imagen */}
             <img
@@ -60,7 +60,7 @@ const CardMovies = ({ searchTerm, pageNumber }) => {
 
             {/* Si showResumen es true, mostramos solo el resumen, si no mostramos la tarjeta completa */}
             {pelicula.showResumen ? (
-              <p>{pelicula.overview}</p> // Muestra solo el overview (resumen)
+              <p className="p-resum">{pelicula.overview}</p> // Muestra solo el overview (resumen)
             ) : (
               <>
                 <p>Popularidad: {pelicula.popularity}</p>
@@ -70,7 +70,7 @@ const CardMovies = ({ searchTerm, pageNumber }) => {
             )}
 
             {/* Botón para alternar entre resumen y detalles */}
-            <button onClick={() => handleResumen(pelicula)}>
+            <button onClick={() => handleResumen(pelicula)} className="btn">
               {pelicula.showResumen ? "Ver resumen" : "Ver resumen"}
             </button>
           </div>
