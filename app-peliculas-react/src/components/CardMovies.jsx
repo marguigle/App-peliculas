@@ -50,22 +50,27 @@ const CardMovies = ({ searchTerm, pageNumber }) => {
   };
 
   return (
-    <div className="conteiner-cards">
-      {peliculasFiltradas.map((pelicula) => (
-        <div key={pelicula.id} className="card-movies ">
-          <h3>{pelicula.original_title}</h3>
-          <img
-            src={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`}
-            alt="Poster"
-            onClick={() => handleResumen(pelicula)}
-          />
-          <p> {pelicula.resumen}</p>
-          <p>Popularidad: {pelicula.popularity}</p>
-          <p>Lenguaje original: {pelicula.original_language}</p>
-          <p>Fecha de lanzamiento: {pelicula.release_date}</p>
-        </div>
-      ))}
-    </div>
+    <>
+      <div className="conteiner-cards">
+        {peliculasFiltradas.map((pelicula) => (
+          <>
+            <div key={pelicula.id} className="card-movies ">
+              <h3>{pelicula.original_title}</h3>
+              <img
+                src={`https://image.tmdb.org/t/p/w500${pelicula.poster_path}`}
+                alt="Poster"
+                onClick={() => handleResumen(pelicula)}
+              />
+              <p> {pelicula.resumen}</p>
+              <p>Popularidad: {pelicula.popularity}</p>
+              <p>Lenguaje original: {pelicula.original_language}</p>
+              <p>Fecha de lanzamiento: {pelicula.release_date}</p>
+              <button onClick={() => handleResumen(pelicula)}>Overview</button>
+            </div>
+          </>
+        ))}
+      </div>
+    </>
   );
 };
 CardMovies.propTypes = {
