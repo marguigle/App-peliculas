@@ -51,7 +51,16 @@
 }
 .p-resum {
   color: rgb(253, 195, 124);
+
+  white-space: pre-line; /* Respeta saltos de línea */
+  text-align: justify; /* Justifica el texto */
+  line-height: 1.5; /* Espaciado entre líneas */
+  word-wrap: break-word; /* Evita que palabras largas rompan el diseño */
+  padding: 10px; /* Agrega espacio alrededor del texto */
+  font-size: 16px; /* Tamaño adecuado de fuente */
+  max-width: 400px; /* Opcional, para limitar el ancho */
 }
+
 .btn {
   margin-bottom: 1rem;
 }

@@ -20,7 +20,7 @@ const CardMovies = ({ searchTerm, pageNumber }) => {
         setPeliculas(
           data.results.map((pelicula) => ({
             ...pelicula,
-            showResumen: false, // Estado para controlar si mostrar el resumen o no
+            showResumen: false,
           }))
         );
         console.log(data.results);
@@ -71,7 +71,7 @@ const CardMovies = ({ searchTerm, pageNumber }) => {
 
             {/* Botón para alternar entre resumen y detalles */}
             <button onClick={() => handleResumen(pelicula)} className="btn">
-              {pelicula.showResumen ? "Ver resumen" : "Ver resumen"}
+              {pelicula.showResumen ? "ocultar resumen" : "ver resumen"}
             </button>
           </div>
         ))}
