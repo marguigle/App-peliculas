@@ -1,26 +1,17 @@
 import CardMovies from "../components/CardMovies.jsx";
 import Header from "../components/Header.jsx";
 import PaginationButtons from "../components/PaginationButtons.jsx";
-import { useState } from "react";
+import { useContext } from "react";
+import { PeliculasContext } from "../contexts/peliculas.context.jsx";
 
 function HomePage() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [pageNumber, setPageNumber] = useState(1);
-
-  const handleNextPage = () => {
-    setPageNumber(pageNumber + 1);
-  };
-
-  const handlePrevPage = () => {
-    if (pageNumber > 1) {
-      setPageNumber(pageNumber - 1);
-    }
-  };
-
-  function handleSearchMovie(event) {
-    console.log(event.target.value);
-    setSearchTerm(event.target.value);
-  }
+  const {
+    handleSearchMovie,
+    searchTerm,
+    handleNextPage,
+    handlePrevPage,
+    pageNumber,
+  } = useContext(PeliculasContext);
   return (
     <>
       <Header handleSearchMovie={handleSearchMovie} searchTerm={searchTerm} />

@@ -15,3 +15,6 @@ body {
   background-color: black;
   box-sizing: border-box;
 }
+.conteiner-cards .banner {
+  overflow-x: hidden;
+}

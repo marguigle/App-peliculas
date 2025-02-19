@@ -1,22 +1,20 @@
-import PropTypes from "prop-types";
+import { useContext } from "react";
 import "./paginationButtons.css";
+import { PeliculasContext } from "../contexts/peliculas.context";
 
-const PaginationButtons = ({ onNextPage, onPrevPage }) => {
+const PaginationButtons = () => {
+  const { handleNextPage, handlePrevPage } = useContext(PeliculasContext); // ✅ Usar el contexto directamente
+
   return (
     <div className="page-buttons">
-      <button onClick={onPrevPage} className="page-btn">
-        <span className="material-symbols-outlined">navigate_before PREV</span>
+      <button onClick={handlePrevPage} className="page-btn">
+        <span className="material-symbols-outlined">PREV</span>
       </button>
-      <button onClick={onNextPage} className="page-btn">
-        <span className="material-symbols-outlined">NEXT navigate_next </span>
+      <button onClick={handleNextPage} className="page-btn">
+        <span className="material-symbols-outlined">NEXT</span>
       </button>
     </div>
   );
-};
-
-PaginationButtons.propTypes = {
-  onNextPage: PropTypes.func.isRequired, // Espera que onNextPage sea una función
-  onPrevPage: PropTypes.func.isRequired, // Espera que onPrevPage sea una función
 };
 
 export default PaginationButtons;

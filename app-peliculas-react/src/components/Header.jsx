@@ -1,7 +1,10 @@
 /* eslint-disable */
+import { useContext } from "react";
 import "./header.css";
+import { PeliculasContext } from "../contexts/peliculas.context";
 
-function Header({ searchTerm, handleSearchMovie }) {
+function Header() {
+  const { searchTerm, handleSearchMovie } = useContext(PeliculasContext);
   return (
     <div className="banner">
       <img src="favicon_io/apple-touch-icon.png" alt="logo" />

@@ -4,15 +4,17 @@ import { apiKey, endpoint } from "../config.js";
 const PeliculasContext = createContext();
 
 function PeliculasProvider({ children }) {
-  const [peliculas, setPeliculas] = useState([]);
+  const [peliculas, setPeliculas] = useState([]); // 🔵 Todas las películas obtenidas de la API
+  const [peliculasFiltradas, setPeliculasFiltradas] = useState([]); // 🔵 Solo las películas filtradas
   const [pageNumber, setPageNumber] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
 
+  // 🔹 Obtener todas las películas cuando cambia la página (pero no el filtro)
   useEffect(() => {
     const url = new URL(endpoint);
     const params = {
       api_key: apiKey,
-      page: pageNumber,
+      page: pageNumber, // ✅ Solo actualiza películas cuando cambia de página
     };
     url.search = new URLSearchParams(params).toString();
 
@@ -27,32 +29,55 @@ function PeliculasProvider({ children }) {
         );
       })
       .catch((error) => console.error("Error:", error));
-  }, [searchTerm, pageNumber]);
+  }, [pageNumber]); // ✅ Solo depende de `pageNumber`
 
-  const peliculasFiltradas = peliculas.filter(
-    (pelicula) =>
-      pelicula.original_title &&
-      pelicula.original_title.toLowerCase().startsWith(searchTerm.toLowerCase())
-  );
+  // 🔹 Filtrar películas cuando cambia el término de búsqueda
+  useEffect(() => {
+    if (!searchTerm) {
+      setPeliculasFiltradas(peliculas); // ✅ Si no hay búsqueda, usa todas las películas
+    } else {
+      setPeliculasFiltradas(
+        peliculas.filter((pelicula) =>
+          pelicula.original_title
+            ?.toLowerCase()
+            .includes(searchTerm.toLowerCase())
+        )
+      );
+    }
+  }, [searchTerm, peliculas]); // ✅ Se ejecuta solo cuando cambia `searchTerm` o `peliculas`
 
-  const handleResumen = (pelicula) => {
+  // 🔹 Funciones para cambiar de página
+  const handleNextPage = () => {
+    setPageNumber((prev) => prev + 1);
+  };
+
+  const handlePrevPage = () => {
+    setPageNumber((prev) => (prev > 1 ? prev - 1 : 1));
+  };
+
+  const handleSearchMovie = (event) => {
+    setSearchTerm(event.target.value);
+  };
+  const handleResumen = (peliculaSeleccionada) => {
     setPeliculas((prevPeliculas) =>
-      prevPeliculas.map((p) => ({
-        ...p,
-        showResumen: p.id === pelicula.id ? !p.showResumen : p.showResumen,
-      }))
+      prevPeliculas.map((pelicula) =>
+        pelicula.id === peliculaSeleccionada.id
+          ? { ...pelicula, showResumen: !pelicula.showResumen }
+          : pelicula
+      )
     );
   };
 
   return (
     <PeliculasContext.Provider
       value={{
-        peliculas,
-        setPeliculas,
-        handleResumen,
         peliculasFiltradas,
-        setPageNumber,
-        setSearchTerm,
+        handleResumen,
+        handleSearchMovie,
+        searchTerm,
+        pageNumber,
+        handleNextPage,
+        handlePrevPage,
       }}
     >
       {children}
