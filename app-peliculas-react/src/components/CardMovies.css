@@ -64,3 +64,15 @@
 .btn {
   margin-bottom: 1rem;
 }
+@media (max-width: 600px) {
+  .conteiner-cards {
+    display: flex;
+    flex-direction: column; /* Para que las tarjetas se apilen */
+    align-items: center; /* Centrar la tarjeta */
+  }
+
+  .card-movies {
+    width: 100%; /* Ocupar todo el ancho disponible */
+    max-width: 250px; /* Limitar al tamaño de la card */
+  }
+}
