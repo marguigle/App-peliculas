@@ -64,7 +64,7 @@
 .btn {
   margin-bottom: 1rem;
 }
-@media (max-width: 600px) {
+@media (min-width: 250px) {
   .conteiner-cards {
     display: flex;
     flex-direction: column; /* Para que las tarjetas se apilen */
@@ -72,7 +72,14 @@
   }
 
   .card-movies {
-    width: 100%; /* Ocupar todo el ancho disponible */
-    max-width: 250px; /* Limitar al tamaño de la card */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Ocupar todo el ancho disponible */
+    /* Limitar al tamaño de la card */
+  }
+  img {
+    min-width: 90%;
   }
 }
