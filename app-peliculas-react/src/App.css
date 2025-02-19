@@ -5,6 +5,7 @@ body {
   text-align: center;
   background-color: Black;
   /* box-sizing: border-box; */
+  overflow-x: hidden;
 }
 
 #root {
@@ -14,7 +15,4 @@ body {
   text-align: center;
   background-color: black;
   box-sizing: border-box;
-}
-.conteiner-cards .banner {
-  overflow-x: hidden;
 }

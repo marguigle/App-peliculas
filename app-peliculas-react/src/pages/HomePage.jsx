@@ -3,6 +3,7 @@ import Header from "../components/Header.jsx";
 import PaginationButtons from "../components/PaginationButtons.jsx";
 import { useContext } from "react";
 import { PeliculasContext } from "../contexts/peliculas.context.jsx";
+import "../../src/App.css";
 
 function HomePage() {
   const {
